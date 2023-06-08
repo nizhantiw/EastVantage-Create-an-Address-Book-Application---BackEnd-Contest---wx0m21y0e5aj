@@ -65,39 +65,7 @@ const addresses = [
   }
 ]
 
-const mongoose = require('mongoose');
 
-// Define the Address schema
-const addressSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  address: {
-    type: String,
-    required: true
-  },
-  location: {
-    type: {
-      type: String,
-      enum: ['Point'],
-      default: 'Point'
-    },
-    coordinates: {
-      type: [Number],
-      required: true
-    }
-  }
-});
-
-// Create a 2dsphere index on the location field
-addressSchema.index({ location: '2dsphere' });
-
-// Create the Address model
-const Address = mongoose.model('Address', addressSchema);
-
-// Export the Address model
-module.exports = Address;
 
 
 
